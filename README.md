@@ -57,43 +57,34 @@ React + TypeScript + Zustand 기반으로 SSE 스트리밍, WebSocket 실시간 
 - **Recharts**: 관리자 대시보드 차트 (AreaChart / BarChart / PieChart)
 - **react-markdown**: AI 응답 마크다운 렌더링
 
-```mermaid
-graph LR
-    subgraph "Frontend Stack"
-        A1[React 18.3.1]
-        A2[TypeScript 5.5.3]
-        A3[Vite 5.4.0]
-        A4[Zustand 4.5.4]
-        A5[TailwindCSS 3.4.7]
-        A6[Axios 1.7.0]
-        A7[React Router 6.24.0]
-        A8[Recharts 3.8.1]
-        A9[react-markdown]
-    end
+### 통신 방식별 사용 기술
 
-    subgraph "통신 방식"
-        B1[REST API<br/>Axios + JWT]
-        B2[WebSocket<br/>실시간 유저 채팅]
-        B3[SSE<br/>AI 스트리밍 응답]
-    end
+| 통신 방식 | 기술 | 용도 |
+|-----------|------|------|
+| REST API | Axios 1.7.0 + JWT | 인증/채팅/문서/통계 API 호출 |
+| **SSE** | fetch + ReadableStream | **AI 응답 실시간 스트리밍** |
+| **WebSocket** | Native WebSocket | **실시간 유저 채팅/알림** |
 
-    subgraph "Backend API"
-        C[FastAPI<br/>Port: 8000]
-    end
+### 의존성 요약
 
-    A6 -->|HTTP| B1
-    A1 -->|Native WS| B2
-    A1 -->|fetch + ReadableStream| B3
-
-    B1 --> C
-    B2 --> C
-    B3 --> C
-
-    style A1 fill:#61dafb,color:#000
-    style A2 fill:#3178c6,color:#fff
-    style A3 fill:#646cff,color:#fff
-    style A4 fill:#ff9900,color:#000
-    style A5 fill:#06b6d4,color:#fff
+```json
+{
+  "dependencies": {
+    "axios": "^1.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^6.24.0",
+    "recharts": "^3.8.1",
+    "zustand": "^4.5.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "vite": "^5.4.0",
+    "tailwindcss": "^3.4.7",
+    "@vitejs/plugin-react": "^4.3.1"
+  }
+}
 ```
 
 ---
